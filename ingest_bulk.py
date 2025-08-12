@@ -83,7 +83,11 @@ def send_bulk():
 if __name__ == "__main__":
     if not RUN_PER_BATCH:
         print(f"🚀 Lancement de 01 bulk de  {BATCH_SIZE} données...")
+        start_at = time.perf_counter()
         send_bulk()
+        end_at = time.perf_counter()
+        
+        print(f"Temps d'envoi : {end_at - start_at:.2f} secondes")
         exit()
     
     print(f"🚀 Lancement de {NUM_THREADS} flux concurrents...")
