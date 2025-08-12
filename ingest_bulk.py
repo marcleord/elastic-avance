@@ -63,20 +63,22 @@ def generate_bulk_payload(batch_size):
 
 def send_bulk():
     """Envoie un batch de données à Elasticsearch."""
-    while True:
-        payload = generate_bulk_payload(BATCH_SIZE)
-        try:
-            helpers.bulk(
-                client,
-                payload,
-                index=INDEX_NAME
-            )
-            time.sleep(DELAY_BETWEEN_BATCHES)
-        except Exception as e:
-            print(f"Erreur d'envoi : {e}")
-            time.sleep(1)  # Pause avant de réessayer
-            raise e
+    payload = generate_bulk_payload(BATCH_SIZE)
+    try:
+        helpers.bulk(
+            client,
+            payload,
+            index=INDEX_NAME
+        )
+        time.sleep(DELAY_BETWEEN_BATCHES)
+    except Exception as e:
+        print(f"Erreur d'envoi : {e}")
+        time.sleep(1)  # Pause avant de réessayer
+        raise e
 
+def send_bulk_many():
+    while True:
+        send_bulk()
 # =======================
 # LANCEMENT
 # =======================
@@ -93,4 +95,4 @@ if __name__ == "__main__":
     print(f"🚀 Lancement de {NUM_THREADS} flux concurrents...")
     with ThreadPoolExecutor(max_workers=NUM_THREADS) as executor:
         for _ in range(NUM_THREADS):
-            executor.submit(send_bulk)
+            executor.submit(send_bulk_many)
