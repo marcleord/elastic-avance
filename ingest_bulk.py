@@ -92,7 +92,3 @@ if __name__ == "__main__":
         print(f"Temps d'envoi : {end_at - start_at:.2f} secondes")
         exit()
     
-    print(f"🚀 Lancement de {NUM_THREADS} flux concurrents...")
-    with ThreadPoolExecutor(max_workers=NUM_THREADS) as executor:
-        for _ in range(NUM_THREADS):
-            executor.submit(send_bulk_many)
