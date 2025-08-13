@@ -12,10 +12,10 @@ from datetime import datetime, timedelta
 # =======================
 # CONFIGURATION
 # =======================
-ELASTIC_URL = "https://104-200-26-176.ip.linodeusercontent.com:9200/"  # Elasticsearch endpoint
-INDEX_NAME = "transactions-etienne-stream"              # Nom de l'index
+ELASTIC_URL = "http://104-200-27-215.ip.linodeusercontent.com:9200/"  # Elasticsearch endpoint
+INDEX_NAME = "transactions"              # Nom de l'index
 USERNAME = "elastic"                    # Utilisateur (si auth)
-PASSWORD = "5320jJfmOuBO287iOtg80Z3Y"                   # Mot de passe (si auth)
+PASSWORD = "vUVv0t19ZWW14QqAzl36270P"                   # Mot de passe (si auth)
 
 NUM_THREADS = 8                         # Nombre de flux concurrents
 BATCH_SIZE = 500                        # Nombre de documents par envoi
