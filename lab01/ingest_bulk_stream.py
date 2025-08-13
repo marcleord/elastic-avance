@@ -48,7 +48,7 @@ def generate_bulk_payload(batch_size):
         document = {
             "num_clients": "07" + str("".join(random.choices('0123456789', k=8))),
             "offre": "mix_mois_1",
-            "montant": 4000,
+            "montant": random.randint(100, 20000),
             "avantages": f"100GO et 60min valable {validity} jours",
             "date_achat": start_at.isoformat(),
             "date_fin_validite": end_at.isoformat(),
